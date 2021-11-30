@@ -1,0 +1,29 @@
+***** rappel sur le cycle de vie d'un composant livewire *****
+- La méthode mount() est appelée une seul fois aprés instanciation de notre composant
+- la méthode render() est appelée à chaque mondification
+- la méthode updating() est appelé avant la mise la jour 
+- la méthode updated() est appelée aprés la mise à jour 
+On peut avoir updating() et updated() pour un attribut spécifique: updatingName() updatedName()
+- La méthode hydrate() est appelée à chaque sous requête (n'est pas appelé à la 1ere instanciation) avant render()
+
+Donc dans l'ordre: 
+	- 1ére instanciation: mount()
+			      render()
+	- 2éme instanciation (aprés modification d'un champs): 	updating()
+								updated()
+								hydrate()
+								render()
+
+***** Initialisation des valeurs dans le fichier SalesDashboard *****
+- Si je veux que mes valeur proviennent d'un service, on va créer la classe Stats:
+	- on crée un dossier Service dans App dans lequel on crée un fichier Stats.php qui contient la class Stats
+	- ne pas oublier d'importer la class Stats dans le fichier SalesDashboard
+
+/***** wire:poll.1s *****/
+voir la doc de livewire: 
+- on peut même appeler une méthode (ici foo) toute l'instant qu'on veut:
+	<div wire:poll="foo">
+    		Current time: {{ now() }}
+	</div> 
+
+ATTENTION: si l'onglet n'est pas activé ça ne rafraichi pas 
